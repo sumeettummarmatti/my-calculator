@@ -3,7 +3,7 @@ Unit Tests for Calculator
 Students start with 2 passing tests, then add more
 """
 import pytest
-from src.calculator import add, subtract, multiply, divide
+from src.calculator import add, subtract, multiply, divide, power, square_root
 
 class TestBasicOperations:
     """Test basic arithmetic operations"""
@@ -73,6 +73,34 @@ class TestMultiplyDivideWithValidation:
         """Test that dividing by zero raises ValueError"""
         with pytest.raises(ValueError, match = "cannot divide by zero"):
             divide(10, 0)
+
+
+
+class TestAdvancedOperations:
+    """Test power and square root operations"""
+
+    def test_positive_numbers(self):
+        """Test power with positive numbers"""
+        assert power(2, 3) == 8
+        assert power(5, 2) == 25
+    
+    def test_power_zero_exponent(self):
+        """Test power with zero exponent"""
+        assert power(5, 0) == 1
+        #Note 0^0 is often considered 1 in programming contexts
+        assert power(0, 0) == 1
+        
+    def test_square_root_positive_numbers(self):
+        """Test square root of positive numbers"""
+        assert square_root(4) == 2
+        assert square_root(9) == 3
+        assert square_root(16) == 4
+
+    def test_square_root_negative_raises_error(self):
+        """Test taht square root of negative raises ValueError"""
+         # Use same comment to match the error message in calculator.py -> regex matching
+        with pytest.raises(ValueError, match = "Cannot calculate square root of negative number"):
+            square_root(-4)
 
 
 
